@@ -1,0 +1,22 @@
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<h1>タスクの編集</h1>
+
+<%= form_with model: @task, local: true do |form| %>
+  <div>
+    <%= form.label :title, "タスクのタイトル" %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :completed, "完了済み" %>
+    <%= form.check_box :completed %>
+  </div>
+  <div>
+    <%= form.submit "タスクを更新" %>
+  </div>
+<% end %>
+
+<%= turbo_stream_from "tasks_#{@task.id}" %>
+<%= link_to '削除', task_path(@task), method: :delete, data: { turbo_confirm: '本当に削除しますか？' } %>
+

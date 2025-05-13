@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<h1><%= @task.title%></h1>
+<p><%= @task.completed ? "true" : "false"%></p>
+
+
